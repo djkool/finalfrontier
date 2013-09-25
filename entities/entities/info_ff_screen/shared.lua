@@ -61,7 +61,7 @@ if SERVER then
 
     ENT._lastPage = page.ACCESS
 
-    ENT.OverrideNodeCount = 6
+    ENT.OverrideNodeCount = 2
     ENT.OverrideTimePerNode = 0.5
 
     ENT.OverrideNodePositions = nil
