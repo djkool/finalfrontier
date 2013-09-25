@@ -61,11 +61,11 @@ if SERVER then
 
     ENT._lastPage = page.ACCESS
 
-    ENT.OverrideNodeCount = 2
+    ENT.OverrideNodeCount = 4
     ENT.OverrideTimePerNode = 0.5
 
     ENT.OverrideNodePositions = nil
-    ENT.OverrideGoalSequence = nil
+    ENT.OverrideGoalSequence = {2, 1, 4}
     ENT.OverrideCurrSequence = nil
 
     ENT.NextGUIID = 1
@@ -162,21 +162,7 @@ if SERVER then
     end
 
     function ENT:GenerateOverrideSequence()
-        local temp = {}
-        for i = 1, self.OverrideNodeCount do
-            table.insert(temp, i)
-        end
-
-        table.remove(temp, math.random(#temp))
-
-        self.OverrideGoalSequence = {}
-        self.OverrideCurrSequence = {}
-        while #temp > 0 do
-            local index = math.random(#temp)
-            table.insert(self.OverrideGoalSequence, temp[index])
-            table.insert(self.OverrideCurrSequence, temp[index])
-            table.remove(temp, index)
-        end
+        self.OverrideCurrSequence = {1, 2, 3}
     end
 
     function ENT:SwapOverrideNodes(index)
@@ -237,9 +223,6 @@ if SERVER then
     end
 
     function ENT:SetOverrideSequence()
-        for i, v in ipairs(self.OverrideCurrSequence) do
-            self.OverrideGoalSequence[i] = v
-        end
     end
 
     function ENT:StartAlarmCountdown()
